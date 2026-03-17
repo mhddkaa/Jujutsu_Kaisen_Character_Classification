@@ -33,16 +33,39 @@ Hasil evaluasi dan analisis kedua pendekatan tersebut, menunjukkan bahwa *transf
 
 Dataset yang digunakan bersalah dari [Kaggle](https://www.kaggle.com/datasets/angelirodriguez/jujutsu-kaisen-character-dataset)
 
-Dataset gambar asli terdiri dari folder train dan folder val yang didalamnya berisikan lagi data berupa folder sesuai nama karakter, total sebanyak 21 folder. Namun, pada proyek ini dataset yang digunakan hanya terdiri dari **17 kelas karakter** dari serial anime Jujutsu Kaisen, dengan total gambar awal sebanyak 3.557 gambar. Dengan distribusi data awal **tidak seimbang**, di mana beberapa kelas memiliki jumlah data sangat sedikit, sementara kelas lain memiliki hingga 956 gambar. Dengan resolusi tiap gambar yang **tidak seragam** pula.
+Dataset gambar asli terdiri dari folder train dan folder val yang didalamnya berisikan lagi data berupa folder sesuai nama karakter, total sebanyak 21 folder. Namun, pada proyek ini dataset yang digunakan hanya terdiri dari **17 kelas karakter** dari serial anime Jujutsu Kaisen, dengan total gambar awal sebanyak 3.557 gambar. 
 
-🧹Image Pre-processing
+Dengan distribusi data awal **tidak seimbang**, di mana beberapa kelas memiliki jumlah data sangat sedikit, sementara kelas lain memiliki hingga 956 gambar. Dengan resolusi tiap gambar yang **tidak seragam** pula. Dengan struktur folder sebagai berikut
+
+      clean_jjk_data/
+      │
+      ├── dataset/
+         ├── Aoi Todo/
+         ├── Junpei Yoshino/
+         ├── Kasumi Miwa/
+         ├── Kento Nanami/
+         ├── Kiyotaka Ijichi/
+         ├── Mahito/
+         ├── Mai Zenin/
+         ├── Maki Zenin/
+         ├── Megumi Fushiguro/
+         ├── Momo Nishimiya/
+         ├── Nobara Kugisaki/
+         ├── Noritosho Kamo/
+         ├── Panda/
+         ├── Satoru Gojo/
+         ├── Sukuna/
+         ├── Toge Inumaki/
+         └── Yuji Itadori/
+
+🧹*Image Pre-processing*
 
 Untuk mengatasi permasalahan dataset yang imbalance dan juga tidak seragamnya resolusi gambar, dilakukan beberapa proses 
 
 - Seluruh gambar melalui proses standarisasi ukuran menjadi **224x224** piksel untuk memastikan konsistensi input model.
-- Mengatasi class imbalance, dengan proses data augmentation hingga setiap kelas (kecuali yang sudah besar) memiliki sekitar 650 gambar. Sehingga total dataset gambar sebanyak **11.356 gambar.** Dan distribusi menjadi lebih seimbang antar kelas. 
+- Mengatasi *class imbalance*, dengan proses data augmentation hingga setiap kelas (kecuali yang sudah besar) memiliki sekitar 650 gambar. Sehingga total dataset gambar sebanyak **11.356 gambar.** Dan distribusi menjadi lebih seimbang antar kelas. 
 
-🔄️Image Augmentation 
+🔄️*Image Augmentation*
 
 Dilakukan beberapa transformasi pada gambar untuk meningkatkan variasi data. Beberapa teknik yang digunakan adalah
 
@@ -54,4 +77,4 @@ Dilakukan beberapa transformasi pada gambar untuk meningkatkan variasi data. Beb
   
 ## Modelling
 
-## 
+## Model Evaluation
