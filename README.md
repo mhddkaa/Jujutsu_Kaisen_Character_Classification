@@ -18,12 +18,12 @@ Dua pendekatan utama yang digunakan dalam proyek ini, memiliki perbedaan:
 
    - Dibangun diawal, dengan custom lapisan konvolusi dan pooling
    - Lebih ringan
-   - Performa sebesar 90%
+   - Performa mencapai sebesar 90%
      
 2. *Transfer Learning* (VGG16)
 
    - Menggunakan *pretrained* dari *ImageNet*
-   - Akurasi yang dihasilkan lebih tinggi 98%
+   - Akurasi yang dihasilkan lebih tinggi
    - Training lebih cepat konvergen
 
 Hasil evaluasi dan analisis kedua pendekatan tersebut, menunjukkan bahwa *transfer learning* memberikan peningkatan akurasi, data augmentasi berperan penting dalam generalisasi model, dan overfitting tipis dapat ditekan dengan penambahan dropout dan callback. 
@@ -58,7 +58,7 @@ Dengan distribusi data awal **tidak seimbang**, di mana beberapa kelas memiliki 
          ├── Toge Inumaki/
          └── Yuji Itadori/
 
-🧹*Image Pre-processing*
+🧹*Image Preparation*
 
 Untuk mengatasi permasalahan dataset yang imbalance dan juga tidak seragamnya resolusi gambar, dilakukan beberapa proses 
 
@@ -76,5 +76,35 @@ Dilakukan beberapa transformasi pada gambar untuk meningkatkan variasi data. Beb
 - Horizontal Flip : Untuk membalikkan gambar secara horizontal sehingga gambar dapat dikenali dari arah yang berbeda
   
 ## Modelling
+Pada proyek ini digunakan dua pendekatan
 
+1. CNN
+
+   - Model CNN dibangun dengan beberapa layer konvolusi Con2VD - BatchNormalization - MaxPooling
+   - GlobalAveragePooling untuk mereduksi fitur
+   - Dropout untuk mengurangi overfitting
+   - Ouput layer Softmax (17 kelas)
+     
+2. VGG16
+
+   - Layer awal di *freeze* (feature extractor)
+   - Layer akhir di *fine tune*
+   - Dengan GlobalAverage, BatchNormalization, Dense, dan Dropout
+  
+Penggunaan parameter dan callback seperti
+
+   - Optimizer: RMSprop
+   - Epoch: 25-30
+   - EarlyStopping
+   - ModelCheckpoint
+   - ReduceLROnPlateau
+     
 ## Model Evaluation
+Perbandingan performa kedua model
+
+| Model      | Accuracy |
+| ---------- | -------- |
+| CNN        | 91%      |
+| VGG16      | 98%      |
+
+Hasil akurasi tersebut menunjukkan bahwa CNN cukup baik untuk baseline, kemudian VGG16 memberikan peningkatan yang signifikan karena memanfaatkan pretrained feature ini efektif untuk dataset gambar seperti karakter. 
